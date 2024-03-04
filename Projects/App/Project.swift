@@ -9,11 +9,11 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Place",
+    name: "App",
     platform: .iOS,
     product: .app,
     dependencies: [
-        .project(target: "Feature", path: .relativeToRoot("Projects/Feature"))
+        .Projcet.Feature
     ],
     resources: ["Resources/**"],
     infoPlist: .file(path: "Support/Info.plist")

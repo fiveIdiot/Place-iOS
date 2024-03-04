@@ -12,5 +12,12 @@ let project = Project.makeModule(
     name: "ThirdPartyLib",
     product: .framework,
     packages: [],
-    dependencies: []
+    dependencies: [
+        .SPM.RxSwift,
+        .SPM.RxCocoa,
+        .SPM.RxFlow,
+        .SPM.SnapKit,
+        .SPM.Moya,
+        .SPM.Kingfisher   
+    ]
 )
