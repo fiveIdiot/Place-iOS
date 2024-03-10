@@ -9,11 +9,12 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Feature",
+    name: "BaseFeature",
     product: .staticFramework,
     dependencies: [
-        .Projcet.Service,
-        .Projcet.ThirdPartyLib
+        .Domain.Domain,
+        .ThirdPartyLib.ThirdPartyLib,
+        .Shared.DesignSystem
     ],
     resources: ["Resources/**"]
 )

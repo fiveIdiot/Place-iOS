@@ -2,16 +2,15 @@
 //  Project.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by 선민재 on 2/26/24.
+//  Created by 선민재 on 3/10/24.
 //
 
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Service",
+    name: "DesignSystem",
     product: .staticFramework,
-    dependencies: [
-        .Projcet.ThirdPartyLib
-    ]
+    dependencies: [],
+    resources: ["Resources/**"]
 )

@@ -9,12 +9,9 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "App",
-    platform: .iOS,
-    product: .app,
+    name: "Domain",
+    product: .staticFramework,
     dependencies: [
-        .Feature.BaseFeature
-    ],
-    resources: ["Resources/**"],
-    infoPlist: .file(path: "Support/Info.plist")
+        .ThirdPartyLib.ThirdPartyLib
+    ]
 )
