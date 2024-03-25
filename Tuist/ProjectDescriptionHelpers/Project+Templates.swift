@@ -3,11 +3,10 @@ import ProjectDescription
 public extension Project {
     static func makeModule(
         name: String,
-        platform: Platform = .iOS,
+        destinations: Destinations = .iOS,
         product: Product,
         organizationName: String = "fiveIdiot",
         packages: [Package] = [],
-        deploymentTarget: DeploymentTarget? = .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
         dependencies: [TargetDependency] = [],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
@@ -20,24 +19,22 @@ public extension Project {
                 .release(name: .release)
             ], defaultSettings: .recommended)
 
-        let appTarget = Target(
+        let appTarget: Target = .target(
             name: name,
-            platform: platform,
+            destinations: destinations,
             product: product,
             bundleId: "\(organizationName).\(name)",
-            deploymentTarget: deploymentTarget,
             infoPlist: infoPlist,
             sources: sources,
             resources: resources,
             dependencies: dependencies
         )
 
-        let testTarget = Target(
+        let testTarget: Target = .target(
             name: "\(name)Tests",
-            platform: platform,
+            destinations: destinations,
             product: .unitTests,
             bundleId: "\(organizationName).\(name)Tests",
-            deploymentTarget: deploymentTarget,
             infoPlist: .default,
             sources: ["Tests/**"],
             dependencies: [.target(name: name)]
@@ -60,7 +57,7 @@ public extension Project {
 
 extension Scheme {
     static func makeScheme(target: ConfigurationName, name: String) -> Scheme {
-        return Scheme(
+        let scheme: Scheme = .scheme(
             name: name,
             shared: true,
             buildAction: .buildAction(targets: ["\(name)"]),
@@ -74,6 +71,7 @@ extension Scheme {
             profileAction: .profileAction(configuration: target),
             analyzeAction: .analyzeAction(configuration: target)
         )
+        return scheme
     }
 }
 

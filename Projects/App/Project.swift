@@ -10,7 +10,7 @@ import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
     name: "App",
-    platform: .iOS,
+    destinations: .iOS,
     product: .app,
     dependencies: [
         .Feature.BaseFeature
