@@ -9,6 +9,7 @@ import ProjectDescription
 
 extension TargetDependency {
     public enum Feature {}
+    public enum Data {}
     public enum Domain {}
     public enum ThirdPartyLib {}
     public enum Shared {}
@@ -22,11 +23,19 @@ public extension TargetDependency.Feature {
     )
 }
 
+public extension TargetDependency.Data {
+    //MARK: - Data
+    static let BaseData = TargetDependency.project(
+        target: "BaseData",
+        path: .relativeToRoot("Projects/Data/BaseData")
+    )
+}
+
 public extension TargetDependency.Domain {
-    //MARK: - Service
-    static let Domain = TargetDependency.project(
-        target: "Domain",
-        path: .relativeToRoot("Projects/Domain")
+    //MARK: - Domain
+    static let BaseDomain = TargetDependency.project(
+        target: "BaseDomain",
+        path: .relativeToRoot("Projects/Domain/BaseDomain")
     )
 }
 
