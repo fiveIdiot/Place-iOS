@@ -9,9 +9,10 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Domain",
+    name: "BaseDomain",
     product: .staticFramework,
     dependencies: [
-        .ThirdPartyLib.ThirdPartyLib
+        .ThirdPartyLib.ThirdPartyLib,
+        .Data.BaseData
     ]
 )
