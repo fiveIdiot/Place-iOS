@@ -21,6 +21,11 @@ public extension TargetDependency.Feature {
         target: "BaseFeature",
         path: .relativeToRoot("Projects/Features/BaseFeature")
     )
+    
+    static let RootFeature = TargetDependency.project(
+        target: "RootFeature",
+        path: .relativeToRoot("Projects/Features/RootFeature")
+    )
 }
 
 public extension TargetDependency.Data {

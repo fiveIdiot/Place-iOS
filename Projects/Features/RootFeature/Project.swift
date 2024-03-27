@@ -2,16 +2,17 @@
 //  Project.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by 선민재 on 2/26/24.
+//  Created by 선민재 on 3/27/24.
 //
 
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "BaseDomain",
+    name: "RootFeature",
     product: .staticFramework,
     dependencies: [
-        .ThirdPartyLib.ThirdPartyLib
-    ]
+        .Feature.BaseFeature
+    ],
+    resources: ["Resources/**"]
 )
