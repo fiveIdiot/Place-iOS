@@ -26,6 +26,31 @@ public extension TargetDependency.Feature {
         target: "RootFeature",
         path: .relativeToRoot("Projects/Features/RootFeature")
     )
+    
+    static let HomeFeature = TargetDependency.project(
+        target: "HomeFeature",
+        path: .relativeToRoot("Projects/Features/Home/HomeFeature")
+    )
+    
+    static let MapFeature = TargetDependency.project(
+        target: "MapFeature",
+        path: .relativeToRoot("Projects/Features/Map/MapFeature")
+    )
+    
+    static let WritePlaceFeature = TargetDependency.project(
+        target: "WritePlaceFeature",
+        path: .relativeToRoot("Projects/Features/WritePlace/WritePlaceFeature")
+    )
+    
+    static let StoreHomeFeature = TargetDependency.project(
+        target: "StoreHomeFeature",
+        path: .relativeToRoot("Projects/Features/Store/StoreHomeFeature")
+    )
+    
+    static let ProfileFeature = TargetDependency.project(
+        target: "ProfileFeature",
+        path: .relativeToRoot("Projects/Features/Profile/ProfileFeature")
+    )
 }
 
 public extension TargetDependency.Data {
