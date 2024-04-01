@@ -6,7 +6,7 @@
 //  Copyright © 2024 fiveIdiot. All rights reserved.
 //
 
-protocol BaseViewModel {
+public protocol BaseViewModel {
     associatedtype Input
     associatedtype Output
         
