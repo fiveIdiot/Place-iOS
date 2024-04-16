@@ -84,4 +84,9 @@ public extension TargetDependency.Shared {
         target: "DesignSystem",
         path: .relativeToRoot("Projects/Shared/DesignSystem")
     )
+    
+    static let PlaceStep = TargetDependency.project(
+        target: "PlaceStep",
+        path: .relativeToRoot("Projects/Shared/PlaceStep")
+    )
 }

@@ -12,7 +12,9 @@ let project = Project.makeModule(
     name: "RootFeature",
     product: .staticFramework,
     dependencies: [
-        .Feature.BaseFeature
+        .Feature.BaseFeature,
+        .Feature.HomeFeature,
+        .Shared.PlaceStep
     ],
     resources: ["Resources/**"]
 )
