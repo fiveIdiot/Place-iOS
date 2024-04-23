@@ -1,8 +1,8 @@
 //
-//  HomeFlow.swift
+//  WritePlaceFlow.swift
 //  HomeFeature
 //
-//  Created by 선민재 on 4/2/24.
+//  Created by 선민재 on 4/23/24.
 //  Copyright © 2024 fiveIdiot. All rights reserved.
 //
 
@@ -13,20 +13,20 @@ import RxSwift
 
 import PlaceStep
 
-struct HomeStepper: Stepper{
+struct WritePlaceStepper: Stepper{
     var steps = PublishRelay<Step>()
 
     var initialStep: Step {
-        return PlaceStep.homeIsRequired
+        return PlaceStep.writePlaceIsRequired
     }
 }
 
-open class HomeFlow: Flow {
+open class WritePlaceFlow: Flow {
     public var root: Presentable {
         return self.rootViewController
     }
     
-    var stepper = HomeStepper()
+    var stepper = WritePlaceStepper()
     
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
@@ -38,8 +38,8 @@ open class HomeFlow: Flow {
     public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else { return .none }
         switch step {
-        case .homeIsRequired:
-            return homeIsRequired()
+        case .writePlaceIsRequired:
+            return writePlaceIsRequired()
         default:
             return .none
         }
@@ -47,10 +47,10 @@ open class HomeFlow: Flow {
 }
 
 
-extension HomeFlow {
-    private func homeIsRequired() -> FlowContributors {
-        let viewModel = HomeViewModel()
-        let viewController = HomeViewController()
+extension WritePlaceFlow {
+    private func writePlaceIsRequired() -> FlowContributors {
+        let viewModel = WritePlaceViewModel()
+        let viewController = WritePlaceViewController()
         self.rootViewController.pushViewController(viewController, animated: true)
         return .one(flowContributor: .contribute(
             withNextPresentable: viewController,

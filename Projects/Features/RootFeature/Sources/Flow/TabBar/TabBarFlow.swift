@@ -10,6 +10,11 @@ import RxFlow
 import UIKit
 
 import HomeFeature
+import MapFeature
+import WritePlaceFeature
+import StoreHomeFeature
+import ProfileFeature
+
 import PlaceStep
 
 final class TabBarFlow: Flow {

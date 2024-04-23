@@ -13,20 +13,20 @@ import RxSwift
 
 import PlaceStep
 
-struct HomeStepper: Stepper{
+struct ProfileStepper: Stepper{
     var steps = PublishRelay<Step>()
 
     var initialStep: Step {
-        return PlaceStep.homeIsRequired
+        return PlaceStep.profileIsRequired
     }
 }
 
-open class HomeFlow: Flow {
+public class ProfileFlow: Flow {
     public var root: Presentable {
         return self.rootViewController
     }
     
-    var stepper = HomeStepper()
+    var stepper = ProfileStepper()
     
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
@@ -38,8 +38,8 @@ open class HomeFlow: Flow {
     public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else { return .none }
         switch step {
-        case .homeIsRequired:
-            return homeIsRequired()
+        case .profileIsRequired:
+            return profileIsRequired()
         default:
             return .none
         }
@@ -47,10 +47,10 @@ open class HomeFlow: Flow {
 }
 
 
-extension HomeFlow {
-    private func homeIsRequired() -> FlowContributors {
-        let viewModel = HomeViewModel()
-        let viewController = HomeViewController()
+extension ProfileFlow {
+    private func profileIsRequired() -> FlowContributors {
+        let viewModel = ProfileViewModel()
+        let viewController = ProfileViewController()
         self.rootViewController.pushViewController(viewController, animated: true)
         return .one(flowContributor: .contribute(
             withNextPresentable: viewController,
