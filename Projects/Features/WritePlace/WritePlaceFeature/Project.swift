@@ -12,6 +12,7 @@ let project = Project.makeModule(
     name: "WritePlaceFeature",
     product: .staticFramework,
     dependencies: [
-        .Feature.BaseFeature
+        .Feature.BaseFeature,
+        .Shared.PlaceStep
     ]
 )

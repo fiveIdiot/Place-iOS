@@ -2,17 +2,14 @@
 //  Project.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by 선민재 on 3/29/24.
+//  Created by 선민재 on 4/16/24.
 //
 
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "HomeFeature",
+    name: "PlaceStep",
     product: .staticFramework,
-    dependencies: [
-        .Feature.BaseFeature,
-        .Shared.PlaceStep
-    ]
+    dependencies: []
 )

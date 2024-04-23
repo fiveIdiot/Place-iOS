@@ -12,6 +12,7 @@ let project = Project.makeModule(
     name: "MapFeature",
     product: .staticFramework,
     dependencies: [
-        .Feature.BaseFeature
+        .Feature.BaseFeature,
+        .Shared.PlaceStep
     ]
 )

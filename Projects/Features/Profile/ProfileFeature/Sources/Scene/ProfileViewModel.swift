@@ -8,10 +8,13 @@
 
 import RxSwift
 import RxCocoa
+import RxFlow
 
 import BaseFeature
 
-final class ProfileViewModel: BaseViewModel {
+final class ProfileViewModel: BaseViewModel, Stepper{
+    var steps: PublishRelay<Step> = .init()
+    
     struct Input {}
     
     struct Output {}
