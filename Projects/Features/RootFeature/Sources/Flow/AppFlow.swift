@@ -11,26 +11,26 @@ import RxFlow
 import RxSwift
 import RxCocoa
 
-struct AppStepper: Stepper {
-    let steps = PublishRelay<Step>()
+public struct AppStepper: Stepper {
+    public let steps = PublishRelay<Step>()
     private let disposeBag = DisposeBag()
 
-    init() {}
+    public init() {}
     
-    func readyToEmitSteps() {
+    public func readyToEmitSteps() {
         steps.accept(PlaceStep.tabBarIsRequired)
     }
 }
 
-final class AppFlow: Flow {
+open class AppFlow: Flow {
     
-    var root: Presentable {
+    public var root: Presentable {
         return window
     }
     
     private let window: UIWindow
     
-    init(window: UIWindow) {
+    public init(window: UIWindow) {
         self.window = window
     }
         
@@ -38,7 +38,7 @@ final class AppFlow: Flow {
         print("\(type(of: self)): \(#function)")
     }
     
-    func navigate(to step: Step) -> FlowContributors {
+    public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else {return .none}
         
         switch step {

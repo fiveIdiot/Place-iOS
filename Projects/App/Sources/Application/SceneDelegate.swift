@@ -6,17 +6,32 @@
 //
 
 import UIKit
+import RxFlow
+import RxCocoa
+
+import RootFeature
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coordinator = FlowCoordinator()
 
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let scene = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        let appFlow = AppFlow(window: window)
+//        let splashViewController = SplashViewController()
+//        
+//        window.rootViewController = splashViewController
+//        window.makeKeyAndVisible()
+        
+        self.window = window
+        self.coordinator.coordinate(flow: appFlow, with: AppStepper())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
