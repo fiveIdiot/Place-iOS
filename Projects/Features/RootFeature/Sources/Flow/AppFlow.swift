@@ -11,6 +11,8 @@ import RxFlow
 import RxSwift
 import RxCocoa
 
+import PlaceStep
+
 struct AppStepper: Stepper {
     let steps = PublishRelay<Step>()
     private let disposeBag = DisposeBag()

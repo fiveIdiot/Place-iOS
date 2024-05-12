@@ -11,6 +11,8 @@ import ProjectDescriptionHelpers
 let project = Project.makeModule(
     name: "DesignSystem",
     product: .staticFramework,
-    dependencies: [],
+    dependencies: [
+        .ThirdPartyLib.ThirdPartyLib
+    ],
     resources: ["Resources/**"]
 )

@@ -11,5 +11,7 @@ import ProjectDescriptionHelpers
 let project = Project.makeModule(
     name: "PlaceStep",
     product: .staticFramework,
-    dependencies: []
+    dependencies: [
+        .ThirdPartyLib.ThirdPartyLib
+    ]
 )
