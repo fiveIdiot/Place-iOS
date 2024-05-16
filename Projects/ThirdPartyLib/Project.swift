@@ -18,6 +18,7 @@ let project = Project.makeModule(
         .SPM.RxFlow,
         .SPM.SnapKit,
         .SPM.Moya,
-        .SPM.Kingfisher   
+        .SPM.Kingfisher,
+        .SPM.Lottie
     ]
 )
