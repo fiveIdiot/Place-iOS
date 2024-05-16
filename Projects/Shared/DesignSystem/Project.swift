@@ -14,5 +14,8 @@ let project = Project.makeModule(
     dependencies: [
         .ThirdPartyLib.ThirdPartyLib
     ],
-    resources: ["Resources/**"]
+    resources: ["Resources/**"],
+    resourceSynthesizers: .default + [
+        .custom(name: "Lottie", parser: .json, extensions: ["json"])
+    ]
 )
