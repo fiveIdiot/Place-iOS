@@ -51,7 +51,7 @@ extension SplashFlow {
     private func splashIsRequired() -> FlowContributors {
         let viewModel = SplashViewModel()
         let viewController = SplashViewController()
-        self.rootViewController.pushViewController(viewController, animated: true)
+        self.rootViewController.setViewControllers([viewController], animated: false)
         return .one(flowContributor: .contribute(
             withNextPresentable: viewController,
             withNextStepper: viewModel

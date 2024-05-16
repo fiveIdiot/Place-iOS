@@ -12,5 +12,8 @@ import SnapKit
 import BaseFeature
 
 final class SplashViewController: BaseViewController {
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .cyan
+    }
 }
