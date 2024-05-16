@@ -10,7 +10,8 @@ public extension Project {
         dependencies: [TargetDependency] = [],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
-        infoPlist: InfoPlist = .default
+        infoPlist: InfoPlist = .default,
+        resourceSynthesizers: [ResourceSynthesizer] = .default
     ) -> Project {
         let settings: Settings = .settings(
             base: [:],
@@ -50,7 +51,8 @@ public extension Project {
             packages: packages,
             settings: settings,
             targets: targets,
-            schemes: schemes
+            schemes: schemes,
+            resourceSynthesizers: resourceSynthesizers
         )
     }
 }

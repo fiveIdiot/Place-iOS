@@ -14,7 +14,7 @@ final class PlaceTabBarController: UITabBarController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        configureVC()
+        self.configureVC()
     }
     
     required init?(coder: NSCoder) {
@@ -22,7 +22,7 @@ final class PlaceTabBarController: UITabBarController {
     }
 }
 
-private extension GOMSTabBarViewController {
+private extension PlaceTabBarController {
     func configureVC() {
         tabBar.tintColor = DesignSystemAsset.grey7.color
         tabBar.unselectedItemTintColor = DesignSystemAsset.white.color

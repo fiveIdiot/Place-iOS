@@ -9,16 +9,10 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "RootFeature",
+    name: "SplashFeature",
     product: .staticFramework,
     dependencies: [
         .Feature.BaseFeature,
-        .Feature.SplashFeature,
-        .Feature.HomeFeature,
-        .Feature.MapFeature,
-        .Feature.ProfileFeature,
-        .Feature.StoreHomeFeature,
-        .Feature.WritePlaceFeature,
         .Shared.PlaceStep
     ],
     resources: ["Resources/**"]

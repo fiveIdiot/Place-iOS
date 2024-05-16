@@ -18,4 +18,6 @@ public enum PlaceStep: Step {
     case writePlaceIsRequired
     case storeIsRequired
     case profileIsRequired
+    
+    case splashIsRequired
 }

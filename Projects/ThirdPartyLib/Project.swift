@@ -10,7 +10,7 @@ import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
     name: "ThirdPartyLib",
-    product: .framework,
+    product: .staticFramework,
     packages: [],
     dependencies: [
         .SPM.RxSwift,
@@ -18,6 +18,7 @@ let project = Project.makeModule(
         .SPM.RxFlow,
         .SPM.SnapKit,
         .SPM.Moya,
-        .SPM.Kingfisher   
+        .SPM.Kingfisher,
+        .SPM.Lottie
     ]
 )

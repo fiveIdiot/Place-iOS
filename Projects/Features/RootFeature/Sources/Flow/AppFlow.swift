@@ -11,71 +11,57 @@ import RxFlow
 import RxSwift
 import RxCocoa
 
-struct AppStepper: Stepper {
-    let steps = PublishRelay<Step>()
+import PlaceStep
+import SplashFeature
+
+public struct AppStepper: Stepper {
+    public let steps = PublishRelay<Step>()
     private let disposeBag = DisposeBag()
 
-    init() {}
+    public init() {}
     
-    func readyToEmitSteps() {
-        steps.accept(PlaceStep.tabBarIsRequired)
+    public func readyToEmitSteps() {
+        steps.accept(PlaceStep.splashIsRequired)
     }
 }
 
-final class AppFlow: Flow {
+open class AppFlow: Flow {
     
-    var root: Presentable {
-        return window
-    }
-    
-    private let window: UIWindow
-    
-    init(window: UIWindow) {
-        self.window = window
+    public var root: Presentable {
+        return self.rootViewController
     }
         
-    deinit{
-        print("\(type(of: self)): \(#function)")
-    }
+    private lazy var rootViewController: UIViewController = {
+        let viewController = UIViewController()
+        return viewController
+    }()
     
-    func navigate(to step: Step) -> FlowContributors {
+    public init(){}
+    
+    public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else {return .none}
         
         switch step {
-//        case .introIsRequired:
-//            return coordinateToIntro()
-        case .tabBarIsRequired:
-            return coordinateToHome()
+        case .splashIsRequired:
+            return coordinateToSplash()
         default:
             return .none
         }
     }
-    
-//    private func coordinateToIntro() -> FlowContributors {
-//        let flow = AuthFlow()
-//        Flows.use(flow, when: .created) { (root) in
-//            self.window.rootViewController = root
-//        }
-//        return .one(
-//            flowContributor: .contribute(
-//                withNextPresentable: flow,
-//                withNextStepper: OneStepper(withSingleStep: GOMSStep.introIsRequired)
-//        ))
-//    }
 
-    private func coordinateToHome() -> FlowContributors {
-        let flow = TabBarFlow()
+    private func coordinateToSplash() -> FlowContributors {
+        let flow = SplashFlow()
         Flows.use(
             flow,
             when: .created
         ) { [unowned self] root in
-            self.window.rootViewController = root
+            self.rootViewController = root
         }
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: flow,
                 withNextStepper: OneStepper(
-                    withSingleStep: PlaceStep.tabBarIsRequired
+                    withSingleStep: PlaceStep.splashIsRequired
                 )
         ))
     }

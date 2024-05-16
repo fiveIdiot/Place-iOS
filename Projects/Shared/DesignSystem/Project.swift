@@ -11,6 +11,11 @@ import ProjectDescriptionHelpers
 let project = Project.makeModule(
     name: "DesignSystem",
     product: .staticFramework,
-    dependencies: [],
-    resources: ["Resources/**"]
+    dependencies: [
+        .ThirdPartyLib.ThirdPartyLib
+    ],
+    resources: ["Resources/**"],
+    resourceSynthesizers: .default + [
+        .custom(name: "Lottie", parser: .json, extensions: ["json"])
+    ]
 )
