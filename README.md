@@ -3,5 +3,6 @@
 - App
 - Features
 - Domain
+- Data
 - Shared
 - ThirdPartyLib
