@@ -17,7 +17,8 @@ open class BaseViewController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = DesignSystemAsset.grey10.color
+        self.navigationController?.isNavigationBarHidden = true
+        self.view.backgroundColor = DesignSystemAsset.PlaceColor.grey10.color
         self.addSubviews()
         self.setLayout()
     }

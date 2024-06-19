@@ -40,6 +40,8 @@ open class SplashFlow: Flow {
         switch step {
         case .splashIsRequired:
             return splashIsRequired()
+        case .tabBarIsRequired:
+            return .end(forwardToParentFlowWithStep: PlaceStep.tabBarIsRequired)
         default:
             return .none
         }
@@ -49,12 +51,12 @@ open class SplashFlow: Flow {
 
 extension SplashFlow {
     private func splashIsRequired() -> FlowContributors {
-        let viewModel = SplashViewModel()
-        let viewController = SplashViewController()
-        self.rootViewController.setViewControllers([viewController], animated: false)
+        let splashViewModel = SplashViewModel()
+        let splashViewController = SplashViewController(with: splashViewModel)
+        self.rootViewController.setViewControllers([splashViewController], animated: false)
         return .one(flowContributor: .contribute(
-            withNextPresentable: viewController,
-            withNextStepper: viewModel
+            withNextPresentable: splashViewController,
+            withNextStepper: splashViewModel
         ))
     }
 }

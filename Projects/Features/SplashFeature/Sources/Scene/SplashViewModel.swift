@@ -11,6 +11,7 @@ import RxCocoa
 import RxFlow
 
 import BaseFeature
+import PlaceStep
 
 final class SplashViewModel: BaseViewModel, Stepper {
     var steps: PublishRelay<Step> = .init()
@@ -25,5 +26,9 @@ final class SplashViewModel: BaseViewModel, Stepper {
     
     func transform(input: Input) -> Output {
         return Output()
+    }
+    
+    func moveToTabBarController() {
+        self.steps.accept(PlaceStep.tabBarIsRequired)
     }
 }

@@ -24,9 +24,9 @@ final class PlaceTabBarController: UITabBarController {
 
 private extension PlaceTabBarController {
     func configureVC() {
-        tabBar.tintColor = DesignSystemAsset.grey7.color
-        tabBar.unselectedItemTintColor = DesignSystemAsset.white.color
-        tabBar.backgroundColor = DesignSystemAsset.grey10.color
+        tabBar.tintColor = DesignSystemAsset.PlaceColor.white.color
+        tabBar.unselectedItemTintColor = DesignSystemAsset.PlaceColor.grey7.color
+        tabBar.backgroundColor = DesignSystemAsset.PlaceColor.grey10.color
         tabBar.layer.cornerRadius = 10
     }
 }
