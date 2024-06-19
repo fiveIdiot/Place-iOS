@@ -44,6 +44,8 @@ open class AppFlow: Flow {
         switch step {
         case .splashIsRequired:
             return coordinateToSplash()
+        case .tabBarIsRequired:
+            return coordinateToTabBar()
         default:
             return .none
         }
@@ -51,19 +53,33 @@ open class AppFlow: Flow {
 
     private func coordinateToSplash() -> FlowContributors {
         let flow = SplashFlow()
-        Flows.use(
-            flow,
-            when: .created
-        ) { [unowned self] root in
+        Flows.use(flow, when: .created) { [weak self] root in
+            guard let self = self else { return }
             self.rootViewController = root
         }
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: flow,
-                withNextStepper: OneStepper(
-                    withSingleStep: PlaceStep.splashIsRequired
-                )
-        ))
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.splashIsRequired)
+            )
+        )
+    }
+    
+    private func coordinateToTabBar() -> FlowContributors {
+        let flow = TabBarFlow()
+        Flows.use(flow, when: .created) { [weak self] root in
+            guard let self = self else { return }
+            self.rootViewController.dismiss(animated: false)
+            root.modalPresentationStyle = .fullScreen
+            root.modalTransitionStyle = .crossDissolve
+            self.rootViewController.present(root, animated: false)
+        }
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: flow,
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.tabBarIsRequired)
+            )
+        )
     }
     
 }

@@ -16,20 +16,20 @@ import StoreHomeFeature
 import ProfileFeature
 
 import PlaceStep
+import DesignSystem
 
 final class TabBarFlow: Flow {
     
-    enum TabIndex: Int {
-        case home = 0
-        case qrCode = 1
-        case outing = 2
-    }
-    
     var root: Presentable {
-        return self.rootVC
+        return self.rootViewController
     }
     
-    private let rootVC = PlaceTabBarController()
+    private let mainTabBarController = PlaceTabBarController()
+    
+    private lazy var rootViewController: UINavigationController = {
+        let viewController = UINavigationController(rootViewController: mainTabBarController)
+        return viewController
+    }()
     
     private let homeFlow = HomeFlow()
     private let mapFlow = MapFlow()
@@ -45,10 +45,6 @@ final class TabBarFlow: Flow {
         switch step {
         case .tabBarIsRequired:
             return coordinateToTabbar()
-            
-//        case .introIsRequired:
-//            return .end(forwardToParentFlowWithStep: GOMSStep.introIsRequired)
-            
         default:
             return .none
         }
@@ -71,32 +67,32 @@ private extension TabBarFlow {
             
             let homeItem = UITabBarItem(
                 title: "홈",
-                image: UIImage(named: "unHome.svg"),
+                image: DesignSystemAsset.PlaceImage.homeIcon.image.withRenderingMode(.alwaysTemplate),
                 selectedImage: UIImage(named: "selectedHome.svg")
             )
             
             let mapItem = UITabBarItem(
                 title: "내 주변",
-                image: UIImage(named: "unHome.svg"),
+                image: DesignSystemAsset.PlaceImage.mapIcon.image.withRenderingMode(.alwaysTemplate),
                 selectedImage: UIImage(named: "selectedHome.svg")
             )
             
             let writePlaceItem = UITabBarItem(
                 title: "작성",
-                image: UIImage(named: "unOuting.svg"),
+                image: DesignSystemAsset.PlaceImage.writeIcon.image.withRenderingMode(.alwaysTemplate),
                 selectedImage: UIImage(named: "selectedOuting.svg")
             )
             
             let storeItem = UITabBarItem(
                 title: "상점",
-                image: UIImage(named: "unOuting.svg"),
+                image: DesignSystemAsset.PlaceImage.storeIcon.image.withRenderingMode(.alwaysTemplate),
                 selectedImage: UIImage(named: "selectedOuting.svg")
             )
             
             let profileItem = UITabBarItem(
                 title: "프로필",
-                image: UIImage(named: "unOuting.svg"),
-                selectedImage: UIImage(named: "selectedOuting.svg")
+                image: DesignSystemAsset.PlaceImage.profileIcon.image.withRenderingMode(.alwaysTemplate),
+                tag: 4
             )
             
             root1.tabBarItem = homeItem
@@ -105,7 +101,9 @@ private extension TabBarFlow {
             root4.tabBarItem = storeItem
             root5.tabBarItem = profileItem
             
-            self.rootVC.setViewControllers([root1,root2,root3,root4,root5], animated: true)
+            self.rootViewController.setViewControllers([mainTabBarController], animated: false)
+            self.rootViewController.isNavigationBarHidden = true
+            self.mainTabBarController.setViewControllers([root1,root2,root3,root4,root5], animated: true)
         }
         return .multiple(flowContributors: [
             .contribute(
