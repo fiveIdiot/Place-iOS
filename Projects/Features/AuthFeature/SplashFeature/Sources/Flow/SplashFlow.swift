@@ -12,6 +12,7 @@ import RxCocoa
 import RxSwift
 
 import PlaceStep
+import SignInFeature
 
 struct SplashStepper: Stepper{
     var steps = PublishRelay<Step>()
@@ -40,6 +41,8 @@ open class SplashFlow: Flow {
         switch step {
         case .splashIsRequired:
             return splashIsRequired()
+        case .authIsRequired:
+            return .end(forwardToParentFlowWithStep: PlaceStep.authIsRequired)
         case .tabBarIsRequired:
             return .end(forwardToParentFlowWithStep: PlaceStep.tabBarIsRequired)
         default:

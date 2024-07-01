@@ -19,5 +19,8 @@ public enum PlaceStep: Step {
     case storeIsRequired
     case profileIsRequired
     
+    // MARK: Auth
+    case authIsRequired
     case splashIsRequired
+    case signInRequired
 }

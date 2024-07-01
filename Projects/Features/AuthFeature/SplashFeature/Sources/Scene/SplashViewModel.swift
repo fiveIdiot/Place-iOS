@@ -29,6 +29,6 @@ final class SplashViewModel: BaseViewModel, Stepper {
     }
     
     func moveToTabBarController() {
-        self.steps.accept(PlaceStep.tabBarIsRequired)
+        self.steps.accept(PlaceStep.authIsRequired)
     }
 }

@@ -14,6 +14,7 @@ let project = Project.makeModule(
     dependencies: [
         .Feature.BaseFeature,
         .Feature.SplashFeature,
+        .Feature.SignInFeature,
         .Feature.HomeFeature,
         .Feature.MapFeature,
         .Feature.ProfileFeature,

@@ -62,6 +62,7 @@ final class HomeViewController: BaseViewController {
             $0.top.equalTo(homeNavigationBar.snp.bottom).offset(8)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(44)
+            $0.top.bottom.left.right.equalToSuperview()
         }
     }
 }

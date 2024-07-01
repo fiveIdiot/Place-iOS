@@ -44,6 +44,8 @@ open class AppFlow: Flow {
         switch step {
         case .splashIsRequired:
             return coordinateToSplash()
+        case .authIsRequired:
+            return coordinateToAuth()
         case .tabBarIsRequired:
             return coordinateToTabBar()
         default:
@@ -78,6 +80,23 @@ open class AppFlow: Flow {
             flowContributor: .contribute(
                 withNextPresentable: flow,
                 withNextStepper: OneStepper(withSingleStep: PlaceStep.tabBarIsRequired)
+            )
+        )
+    }
+    
+    private func coordinateToAuth() -> FlowContributors {
+        let flow = AuthFlow()
+        Flows.use(flow, when: .created) { [weak self] root in
+            guard let self = self else { return }
+            self.rootViewController.dismiss(animated: false)
+            root.modalPresentationStyle = .fullScreen
+            root.modalTransitionStyle = .crossDissolve
+            self.rootViewController.present(root, animated: false)
+        }
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: flow,
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.authIsRequired)
             )
         )
     }
