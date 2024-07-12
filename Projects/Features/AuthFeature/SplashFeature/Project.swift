@@ -14,6 +14,5 @@ let project = Project.makeModule(
     dependencies: [
         .Feature.BaseFeature,
         .Shared.PlaceStep
-    ],
-    resources: ["Resources/**"]
+    ]
 )

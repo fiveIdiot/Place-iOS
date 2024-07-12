@@ -21,6 +21,5 @@ let project = Project.makeModule(
         .Feature.StoreHomeFeature,
         .Feature.WritePlaceFeature,
         .Shared.PlaceStep
-    ],
-    resources: ["Resources/**"]
+    ]
 )

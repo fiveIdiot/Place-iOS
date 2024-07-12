@@ -16,6 +16,5 @@ let project = Project.makeModule(
         .Feature.BaseFeature,
         .Feature.RootFeature
     ],
-    resources: ["Resources/**"],
     infoPlist: .file(path: "Support/Info.plist")
 )
