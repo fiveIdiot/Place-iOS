@@ -28,8 +28,6 @@ open class SplashFlow: Flow {
         return self.rootViewController
     }
     
-    var stepper = SplashStepper()
-    
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
         return viewController

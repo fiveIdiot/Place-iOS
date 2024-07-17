@@ -13,7 +13,7 @@ import RxFlow
 import BaseFeature
 import PlaceStep
 
-final class SignInViewModel: BaseViewModel, RxFlow.Stepper {
+final class SignInViewModel: BaseViewModel, Stepper {
     var steps: PublishRelay<Step> = .init()
     
     struct Input {}

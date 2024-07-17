@@ -13,13 +13,10 @@ import Lottie
 
 import BaseFeature
 import DesignSystem
+import PlaceStep
 
 struct SignInView: View {
-    private let viewModel: SignInViewModel
-    
-    init(viewModel: SignInViewModel) {
-        self.viewModel = viewModel
-    }
+    let viewModel: SignInViewModel
     
     var body: some View {
         ZStack {

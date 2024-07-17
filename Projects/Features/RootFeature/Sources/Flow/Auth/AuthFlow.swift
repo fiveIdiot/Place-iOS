@@ -31,6 +31,8 @@ final class AuthFlow: Flow {
         switch step {
         case .authIsRequired:
             return coordinateToSignIn()
+        case .tabBarIsRequired:
+            return .end(forwardToParentFlowWithStep: PlaceStep.tabBarIsRequired)
         default:
             return .none
         }
@@ -43,7 +45,6 @@ private extension AuthFlow {
         let flow = SignInFlow()
         Flows.use(flow, when: .created) { [weak self] root in
             guard let self = self else { return }
-            self.rootViewController.dismiss(animated: false)
             root.modalPresentationStyle = .fullScreen
             root.modalTransitionStyle = .crossDissolve
             self.rootViewController.present(root, animated: false)

@@ -14,21 +14,11 @@ import RxFlow
 
 import PlaceStep
 
-struct SignInStepper: RxFlow.Stepper {
-    var steps = PublishRelay<Step>()
-
-    var initialStep: Step {
-        return PlaceStep.signInRequired
-    }
-}
-
 open class SignInFlow: Flow {
     public var root: Presentable {
         return self.rootViewController
     }
-    
-    var stepper = SignInStepper()
-    
+        
     private var rootViewController = UINavigationController()
     
     public init(){}
