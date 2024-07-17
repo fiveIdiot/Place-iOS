@@ -6,35 +6,37 @@
 //  Copyright © 2024 fiveIdiot. All rights reserved.
 //
 
-import UIKit
 import SwiftUI
+
 import SnapKit
 import Lottie
 
 import BaseFeature
 import DesignSystem
 
-final class SignInViewController: BaseViewController {
-    private let viewModel: SignInViewModel
-    
-    init(with viewModel: SignInViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
-        self.view.backgroundColor = DesignSystemAsset.PlaceColor.blue1.color
-    }
-}
-
 struct SignInView: View {
     var body: some View {
-        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+        ZStack {
+            DesignSystemAsset.PlaceColor.grey11.swiftUIColor
+            VStack {
+                Spacer()
+                
+                Spacer()
+                
+                Button(action: {
+                    
+                }) {
+                    Text("플레이스 시작하기")
+                        .padding()
+                        .frame(width: 335, height: 48)
+                        .font(PlaceFontSystem.subHeadline3)
+                        .tint(DesignSystemAsset.PlaceColor.black.swiftUIColor)
+                        .background(DesignSystemAsset.PlaceColor.orange5.swiftUIColor)
+                        .cornerRadius(8)
+                }
+            }
+            .padding(.bottom, 50)
+        }
+        .ignoresSafeArea()
     }
 }

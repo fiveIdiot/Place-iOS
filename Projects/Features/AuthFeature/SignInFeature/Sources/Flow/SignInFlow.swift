@@ -6,14 +6,15 @@
 //  Copyright © 2024 fiveIdiot. All rights reserved.
 //
 
-import RxFlow
 import UIKit
+import SwiftUI
 import RxCocoa
 import RxSwift
+import RxFlow
 
 import PlaceStep
 
-struct SignInStepper: Stepper{
+struct SignInStepper: RxFlow.Stepper {
     var steps = PublishRelay<Step>()
 
     var initialStep: Step {
@@ -49,8 +50,7 @@ open class SignInFlow: Flow {
 extension SignInFlow {
     private func signInIsRequired() -> FlowContributors {
         let signInViewModel = SignInViewModel()
-        let signInViewController = SignInViewController(with: signInViewModel)
-        
+        let signInViewController = UIHostingController(rootView: SignInView())
         self.rootViewController.pushViewController(signInViewController, animated: false)
         
         return .one(flowContributor: .contribute(
