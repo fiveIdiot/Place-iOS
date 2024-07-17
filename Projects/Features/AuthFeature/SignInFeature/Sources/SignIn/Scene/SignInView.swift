@@ -15,6 +15,12 @@ import BaseFeature
 import DesignSystem
 
 struct SignInView: View {
+    private let viewModel: SignInViewModel
+    
+    init(viewModel: SignInViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         ZStack {
             DesignSystemAsset.PlaceColor.grey11.swiftUIColor
@@ -24,7 +30,7 @@ struct SignInView: View {
                 Spacer()
                 
                 Button(action: {
-                    
+                    self.viewModel.moveToOAuthView()
                 }) {
                     Text("플레이스 시작하기")
                         .padding()

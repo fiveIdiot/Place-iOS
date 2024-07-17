@@ -38,6 +38,8 @@ open class SignInFlow: Flow {
         switch step {
         case .signInRequired:
             return signInIsRequired()
+        case .oauthIsRequired:
+            return oauthIsRequired()
         case .tabBarIsRequired:
             return .end(forwardToParentFlowWithStep: PlaceStep.tabBarIsRequired)
         default:
@@ -50,12 +52,23 @@ open class SignInFlow: Flow {
 extension SignInFlow {
     private func signInIsRequired() -> FlowContributors {
         let signInViewModel = SignInViewModel()
-        let signInViewController = UIHostingController(rootView: SignInView())
-        self.rootViewController.pushViewController(signInViewController, animated: false)
+        let signInView = UIHostingController(rootView: SignInView(viewModel: signInViewModel))
+        self.rootViewController.setViewControllers([signInView], animated: false)
         
         return .one(flowContributor: .contribute(
-            withNextPresentable: signInViewController,
+            withNextPresentable: signInView,
             withNextStepper: signInViewModel
+        ))
+    }
+    
+    private func oauthIsRequired() -> FlowContributors {
+        let oauthViewModel = OAuthViewModel()
+        let oauthView = UIHostingController(rootView: OAuthView())
+        self.rootViewController.pushViewController(oauthView, animated: false)
+
+        return .one(flowContributor: .contribute(
+            withNextPresentable: oauthView,
+            withNextStepper: oauthViewModel
         ))
     }
 }

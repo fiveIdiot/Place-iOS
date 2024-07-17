@@ -23,4 +23,5 @@ public enum PlaceStep: Step {
     case authIsRequired
     case splashIsRequired
     case signInRequired
+    case oauthIsRequired /// OAuth 설정하는 View
 }

@@ -1,8 +1,8 @@
 //
-//  SignInViewModel.swift
-//  SplashFeature
+//  OAuthViewModel.swift
+//  SignInFeature
 //
-//  Created by 선민재 on 7/1/24.
+//  Created by 선민재 on 7/17/24.
 //  Copyright © 2024 fiveIdiot. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ import RxFlow
 import BaseFeature
 import PlaceStep
 
-final class SignInViewModel: BaseViewModel, Stepper {
+final class OAuthViewModel: BaseViewModel, Stepper {
     var steps: PublishRelay<Step> = .init()
     
     struct Input {
@@ -26,9 +26,5 @@ final class SignInViewModel: BaseViewModel, Stepper {
     
     func transform(input: Input) -> Output {
         return Output()
-    }
-    
-    func moveToTabBarController() {
-        self.steps.accept(PlaceStep.tabBarIsRequired)
     }
 }
