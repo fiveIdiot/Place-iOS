@@ -1,5 +1,5 @@
 //
-//  SplashViewController.swift
+//  SignInView.swift
 //  SplashFeature
 //
 //  Created by 선민재 on 7/1/24.

@@ -6,15 +6,16 @@
 //  Copyright © 2024 fiveIdiot. All rights reserved.
 //
 
-import RxFlow
 import UIKit
+import SwiftUI
 import RxCocoa
 import RxSwift
+import RxFlow
 
 import PlaceStep
 import SignInFeature
 
-struct SplashStepper: Stepper{
+struct SplashStepper: RxFlow.Stepper {
     var steps = PublishRelay<Step>()
 
     var initialStep: Step {
@@ -55,10 +56,11 @@ open class SplashFlow: Flow {
 extension SplashFlow {
     private func splashIsRequired() -> FlowContributors {
         let splashViewModel = SplashViewModel()
-        let splashViewController = SplashViewController(with: splashViewModel)
-        self.rootViewController.setViewControllers([splashViewController], animated: false)
+        let splashView = UIHostingController(rootView: SplashView(viewModel: splashViewModel))
+     
+        self.rootViewController.setViewControllers([splashView], animated: false)
         return .one(flowContributor: .contribute(
-            withNextPresentable: splashViewController,
+            withNextPresentable: splashView,
             withNextStepper: splashViewModel
         ))
     }
