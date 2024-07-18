@@ -31,12 +31,14 @@ struct SignInView: View {
                 }) {
                     Text("플레이스 시작하기")
                         .padding()
-                        .frame(width: 335, height: 48)
+                        .frame(maxWidth: .infinity, maxHeight: 48)
                         .font(PlaceFontSystem.subHeadline3)
                         .tint(DesignSystemAsset.PlaceColor.black.swiftUIColor)
                         .background(DesignSystemAsset.PlaceColor.orange5.swiftUIColor)
                         .cornerRadius(8)
                 }
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
             }
             .padding(.bottom, 50)
         }

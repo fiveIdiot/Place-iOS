@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SnapKit
 import Lottie
 
 import BaseFeature
