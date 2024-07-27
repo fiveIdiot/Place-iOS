@@ -14,7 +14,7 @@ public struct PlaceNavigationView: View {
             Button(action: {
                 
             }, label: {
-                DesignSystemAsset.PlaceImage.arrowRight.swiftUIImage
+                DesignSystemAsset.PlaceImage.arrowLeft.swiftUIImage
             })
             .padding(.leading, 16)
             
