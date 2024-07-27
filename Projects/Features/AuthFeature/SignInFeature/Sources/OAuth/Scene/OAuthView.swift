@@ -37,9 +37,9 @@ struct OAuthView: View {
                 .padding(.top, 16)
                 
                 Button(action: {
-                    
+                    self.viewModel.moveToSignUpView()
                 }) {}
-                    .modifier(OAuthButton(
+                    .buttonStyle(OAuthButton(
                         buttonTitle: "구글로 시작하기",
                         buttonIcon: DesignSystemAsset.PlaceImage.googleIcon.swiftUIImage,
                         buttonTitleColor: DesignSystemAsset.PlaceColor.black.swiftUIColor
@@ -52,9 +52,9 @@ struct OAuthView: View {
                     .padding(.trailing, 16)
 
                 Button(action: {
-                    
+                    self.viewModel.moveToSignUpView()
                 }) {}
-                    .modifier(OAuthButton(
+                    .buttonStyle(OAuthButton(
                         buttonTitle: "카카오로 시작하기",
                         buttonIcon: DesignSystemAsset.PlaceImage.kakaoIcon.swiftUIImage,
                         buttonTitleColor: DesignSystemAsset.PlaceColor.black.swiftUIColor
@@ -67,9 +67,9 @@ struct OAuthView: View {
                     .padding(.trailing, 16)
                 
                 Button(action: {
-                    
+                    self.viewModel.moveToSignUpView()
                 }) {}
-                    .modifier(OAuthButton(
+                    .buttonStyle(OAuthButton(
                         buttonTitle: "애플로 시작하기",
                         buttonIcon: DesignSystemAsset.PlaceImage.appleIcon.swiftUIImage,
                         buttonTitleColor: DesignSystemAsset.PlaceColor.white.swiftUIColor

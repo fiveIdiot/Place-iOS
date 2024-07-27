@@ -15,7 +15,6 @@ let project = Project.makeModule(
         .Feature.BaseFeature,
         .Feature.SplashFeature,
         .Feature.SignInFeature,
-        .Feature.SignUpFeature,
         .Feature.HomeFeature,
         .Feature.MapFeature,
         .Feature.ProfileFeature,

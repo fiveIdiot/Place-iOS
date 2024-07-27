@@ -13,6 +13,7 @@ import RxSwift
 import RxFlow
 
 import PlaceStep
+import SignUpFeature
 
 open class SignInFlow: Flow {
     public var root: Presentable {
@@ -33,7 +34,7 @@ open class SignInFlow: Flow {
         case .tabBarIsRequired:
             return .end(forwardToParentFlowWithStep: PlaceStep.tabBarIsRequired)
         case .signUpIsRequired:
-            return .end(forwardToParentFlowWithStep: PlaceStep.signUpIsRequired)
+            return coordinateToSignUp()
         default:
             return .none
         }
@@ -63,4 +64,12 @@ extension SignInFlow {
             withNextStepper: oauthViewModel
         ))
     }
+    
+    private func coordinateToSignUp() -> FlowContributors {
+        
+        let flow = SignUpFlow(root: self.rootViewController)
+        let nextStep = OneStepper(withSingleStep: PlaceStep.termsOfUseIsRequired)
+
+        return .one(flowContributor: .contribute(withNextPresentable: flow, withNextStepper: nextStep))
+     }
 }

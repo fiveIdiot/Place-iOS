@@ -13,6 +13,7 @@ let project = Project.makeModule(
     product: .staticFramework,
     dependencies: [
         .Feature.BaseFeature,
+        .Feature.SignUpFeature,
         .Shared.PlaceStep
     ]
 )

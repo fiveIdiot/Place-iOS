@@ -13,6 +13,7 @@ import RxCocoa
 
 import PlaceStep
 import SplashFeature
+import SignInFeature
 
 public struct AppStepper: Stepper {
     public let steps = PublishRelay<Step>()
@@ -28,15 +29,14 @@ public struct AppStepper: Stepper {
 open class AppFlow: Flow {
     
     public var root: Presentable {
-        return self.rootViewController
+        return self.window
     }
-        
-    private lazy var rootViewController: UIViewController = {
-        let viewController = UIViewController()
-        return viewController
-    }()
     
-    public init(){}
+    private let window: UIWindow
+    
+    public init(window: UIWindow) {
+        self.window = window
+    }
     
     public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else {return .none}
@@ -57,7 +57,7 @@ open class AppFlow: Flow {
         let flow = SplashFlow()
         Flows.use(flow, when: .created) { [weak self] root in
             guard let self = self else { return }
-            self.rootViewController = root
+            self.window.rootViewController = root
         }
         return .one(
             flowContributor: .contribute(
@@ -71,10 +71,7 @@ open class AppFlow: Flow {
         let flow = TabBarFlow()
         Flows.use(flow, when: .created) { [weak self] root in
             guard let self = self else { return }
-            self.rootViewController.dismiss(animated: false)
-            root.modalPresentationStyle = .fullScreen
-            root.modalTransitionStyle = .crossDissolve
-            self.rootViewController.present(root, animated: false)
+            self.window.rootViewController = root
         }
         return .one(
             flowContributor: .contribute(
@@ -85,18 +82,15 @@ open class AppFlow: Flow {
     }
     
     private func coordinateToAuth() -> FlowContributors {
-        let flow = AuthFlow()
+        let flow = SignInFlow()
         Flows.use(flow, when: .created) { [weak self] root in
             guard let self = self else { return }
-            self.rootViewController.dismiss(animated: false)
-            root.modalPresentationStyle = .fullScreen
-            root.modalTransitionStyle = .crossDissolve
-            self.rootViewController.present(root, animated: false)
+            self.window.rootViewController = root
         }
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: flow,
-                withNextStepper: OneStepper(withSingleStep: PlaceStep.authIsRequired)
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.signInIsRequired)
             )
         )
     }

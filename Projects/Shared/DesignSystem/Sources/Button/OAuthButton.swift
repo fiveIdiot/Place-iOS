@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public struct OAuthButton: ViewModifier {
+public struct OAuthButton: ButtonStyle {
     private let buttonTitle: String
     private let buttonIcon: Image
     private let buttonTitleColor: Color
@@ -23,7 +23,7 @@ public struct OAuthButton: ViewModifier {
         self.buttonTitleColor = buttonTitleColor
     }
     
-    public func body(content: Content) -> some View {
+    public func makeBody(configuration: Configuration) -> some View {
         ZStack {
             HStack {
                 buttonIcon

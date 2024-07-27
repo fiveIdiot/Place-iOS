@@ -13,19 +13,17 @@ import RxSwift
 import RxFlow
 
 import PlaceStep
-import SignInFeature
 
 open class SignUpFlow: Flow {
     public var root: Presentable {
-        return self.rootViewController
+        return self.rootViewController ?? UINavigationController()
     }
     
-    private lazy var rootViewController: UINavigationController = {
-        let viewController = UINavigationController()
-        return viewController
-    }()
-    
-    public init(){}
+    public init(root: UINavigationController) {
+        self.rootViewController = root
+    }
+        
+    public var rootViewController : UINavigationController?
     
     public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else { return .none }
@@ -44,7 +42,7 @@ extension SignUpFlow {
         let termsOfUseViewModel = TermsOfUseViewModel()
         let termsOfUseView = UIHostingController(rootView: TermsOfUseView(viewModel: termsOfUseViewModel))
      
-        self.rootViewController.pushViewController(termsOfUseView, animated: false)
+        self.rootViewController?.pushViewController(termsOfUseView, animated: false)
         return .one(flowContributor: .contribute(
             withNextPresentable: termsOfUseView,
             withNextStepper: termsOfUseViewModel
