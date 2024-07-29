@@ -31,4 +31,5 @@ public enum PlaceStep: Step {
     case signUpIsRequired
     case termsOfUseIsRequired /// 이용 약관 View
     case enterNickNameIsRequired /// 닉네임 입력 View
+    case surveyIsRequired /// 설문조사 View
 }

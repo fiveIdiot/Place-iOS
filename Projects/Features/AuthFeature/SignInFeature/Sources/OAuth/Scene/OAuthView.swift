@@ -25,6 +25,7 @@ struct OAuthView: View {
             
             VStack {
                 PlaceNavigationView()
+                    .frame(height: 48)
                 
                 HStack {
                     Text("간편 로그인으로\n간단하게")

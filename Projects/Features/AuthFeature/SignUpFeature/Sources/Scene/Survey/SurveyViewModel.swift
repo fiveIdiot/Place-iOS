@@ -1,5 +1,5 @@
 //
-//  EnterNickNameViewModel.swift
+//  SurveyViewModel.swift
 //  SignUpFeature
 //
 //  Created by 선민재 on 7/29/24.
@@ -13,7 +13,7 @@ import RxFlow
 import BaseFeature
 import PlaceStep
 
-final class EnterNickNameViewModel: BaseViewModel, Stepper {
+final class SurveyViewModel: BaseViewModel, Stepper {
     var steps: PublishRelay<Step> = .init()
     
     struct Input {
@@ -26,9 +26,5 @@ final class EnterNickNameViewModel: BaseViewModel, Stepper {
     
     func transform(input: Input) -> Output {
         return Output()
-    }
-    
-    func moveToSurveyView() {
-        self.steps.accept(PlaceStep.surveyIsRequired)
     }
 }

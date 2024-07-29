@@ -28,6 +28,7 @@ struct EnterNickNameView: View {
             
             VStack {
                 PlaceNavigationView()
+                    .frame(height: 48)
                 
                 HStack {
                     Text("검사 전 사용하실 닉네임을\n입력해주세요")
@@ -51,6 +52,7 @@ struct EnterNickNameView: View {
                                 Text("닉네임을 입력해주세요.").foregroundColor(DesignSystemAsset.PlaceColor.grey7.swiftUIColor)
                         }
                         .font(PlaceFontSystem.body2)
+                        .tint(DesignSystemAsset.PlaceColor.orange5.swiftUIColor)
                         .foregroundColor(DesignSystemAsset.PlaceColor.white.swiftUIColor)
                         .padding(.horizontal, 16)
                         .frame(height: 48)
@@ -64,7 +66,7 @@ struct EnterNickNameView: View {
                 Spacer()
                 
                 Button(action: {
-//                    self.viewModel.moveToEnterNickNameView()
+                    self.viewModel.moveToSurveyView()
                 }) {
                     Text("다음")
                         .padding()
