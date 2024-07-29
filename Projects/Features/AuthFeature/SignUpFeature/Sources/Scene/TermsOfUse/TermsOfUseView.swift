@@ -29,6 +29,7 @@ struct TermsOfUseView: View {
             
             VStack {
                 PlaceNavigationView()
+                    .frame(height: 48)
                 
                 HStack {
                     Text("플레이스 이용약관에\n동의해주세요")

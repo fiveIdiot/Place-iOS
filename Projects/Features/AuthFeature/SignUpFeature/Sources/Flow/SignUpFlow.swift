@@ -32,6 +32,8 @@ open class SignUpFlow: Flow {
             return termsOfUseIsRequired()
         case .enterNickNameIsRequired:
             return enterNickNameIsRequired()
+        case .surveyIsRequired:
+            return surveyIsRequired()
         default:
             return .none
         }
@@ -59,6 +61,17 @@ extension SignUpFlow {
         return .one(flowContributor: .contribute(
             withNextPresentable: enterNickNameView,
             withNextStepper: enterNickNameViewModel
+        ))
+    }
+    
+    private func surveyIsRequired() -> FlowContributors {
+        let surveyViewModel = SurveyViewModel()
+        let surveyView = UIHostingController(rootView: SurveyView(viewModel: surveyViewModel))
+     
+        self.rootViewController?.pushViewController(surveyView, animated: true)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: surveyView,
+            withNextStepper: surveyViewModel
         ))
     }
 }
