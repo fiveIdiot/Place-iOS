@@ -27,4 +27,8 @@ final class TermsOfUseViewModel: BaseViewModel, Stepper {
     func transform(input: Input) -> Output {
         return Output()
     }
+    
+    func moveToEnterNickNameView() {
+        self.steps.accept(PlaceStep.enterNickNameIsRequired)
+    }
 }

@@ -104,4 +104,9 @@ public extension TargetDependency.Shared {
         target: "PlaceStep",
         path: .relativeToRoot("Projects/Shared/PlaceStep")
     )
+    
+    static let Util = TargetDependency.project(
+        target: "Util",
+        path: .relativeToRoot("Projects/Shared/Util")
+    )
 }

@@ -27,7 +27,8 @@ public enum PlaceStep: Step {
     case signInIsRequired
     case oauthIsRequired /// OAuth 설정하는 View
 
-    // MARK: SignIn
+    // MARK: SignUp
     case signUpIsRequired
     case termsOfUseIsRequired /// 이용 약관 View
+    case enterNickNameIsRequired /// 닉네임 입력 View
 }

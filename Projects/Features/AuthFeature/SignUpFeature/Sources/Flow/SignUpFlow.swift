@@ -30,6 +30,8 @@ open class SignUpFlow: Flow {
         switch step {
         case .termsOfUseIsRequired:
             return termsOfUseIsRequired()
+        case .enterNickNameIsRequired:
+            return enterNickNameIsRequired()
         default:
             return .none
         }
@@ -42,10 +44,21 @@ extension SignUpFlow {
         let termsOfUseViewModel = TermsOfUseViewModel()
         let termsOfUseView = UIHostingController(rootView: TermsOfUseView(viewModel: termsOfUseViewModel))
      
-        self.rootViewController?.pushViewController(termsOfUseView, animated: false)
+        self.rootViewController?.pushViewController(termsOfUseView, animated: true)
         return .one(flowContributor: .contribute(
             withNextPresentable: termsOfUseView,
             withNextStepper: termsOfUseViewModel
+        ))
+    }
+    
+    private func enterNickNameIsRequired() -> FlowContributors {
+        let enterNickNameViewModel = EnterNickNameViewModel()
+        let enterNickNameView = UIHostingController(rootView: EnterNickNameView(viewModel: enterNickNameViewModel))
+     
+        self.rootViewController?.pushViewController(enterNickNameView, animated: true)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: enterNickNameView,
+            withNextStepper: enterNickNameViewModel
         ))
     }
 }

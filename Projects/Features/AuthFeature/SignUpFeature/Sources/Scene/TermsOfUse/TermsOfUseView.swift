@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Lottie
 
 import BaseFeature
 import DesignSystem
@@ -225,7 +224,7 @@ struct TermsOfUseView: View {
                 Spacer()
                 
                 Button(action: {
-//                    self.viewModel.moveToOAuthView()
+                    self.viewModel.moveToEnterNickNameView()
                 }) {
                     Text("다음")
                         .padding()
