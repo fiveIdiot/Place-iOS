@@ -29,7 +29,17 @@ public extension TargetDependency.Feature {
     
     static let SplashFeature = TargetDependency.project(
         target: "SplashFeature",
-        path: .relativeToRoot("Projects/Features/SplashFeature")
+        path: .relativeToRoot("Projects/Features/AuthFeature/SplashFeature")
+    )
+    
+    static let SignInFeature = TargetDependency.project(
+        target: "SignInFeature",
+        path: .relativeToRoot("Projects/Features/AuthFeature/SignInFeature")
+    )
+    
+    static let SignUpFeature = TargetDependency.project(
+        target: "SignUpFeature",
+        path: .relativeToRoot("Projects/Features/AuthFeature/SignUpFeature")
     )
     
     static let HomeFeature = TargetDependency.project(
@@ -93,5 +103,10 @@ public extension TargetDependency.Shared {
     static let PlaceStep = TargetDependency.project(
         target: "PlaceStep",
         path: .relativeToRoot("Projects/Shared/PlaceStep")
+    )
+    
+    static let Util = TargetDependency.project(
+        target: "Util",
+        path: .relativeToRoot("Projects/Shared/Util")
     )
 }

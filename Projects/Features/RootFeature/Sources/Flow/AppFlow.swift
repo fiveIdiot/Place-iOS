@@ -13,6 +13,7 @@ import RxCocoa
 
 import PlaceStep
 import SplashFeature
+import SignInFeature
 
 public struct AppStepper: Stepper {
     public let steps = PublishRelay<Step>()
@@ -28,15 +29,14 @@ public struct AppStepper: Stepper {
 open class AppFlow: Flow {
     
     public var root: Presentable {
-        return self.rootViewController
+        return self.window
     }
-        
-    private lazy var rootViewController: UIViewController = {
-        let viewController = UIViewController()
-        return viewController
-    }()
     
-    public init(){}
+    private let window: UIWindow
+    
+    public init(window: UIWindow) {
+        self.window = window
+    }
     
     public func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? PlaceStep else {return .none}
@@ -44,6 +44,10 @@ open class AppFlow: Flow {
         switch step {
         case .splashIsRequired:
             return coordinateToSplash()
+        case .authIsRequired:
+            return coordinateToAuth()
+        case .tabBarIsRequired:
+            return coordinateToTabBar()
         default:
             return .none
         }
@@ -51,19 +55,44 @@ open class AppFlow: Flow {
 
     private func coordinateToSplash() -> FlowContributors {
         let flow = SplashFlow()
-        Flows.use(
-            flow,
-            when: .created
-        ) { [unowned self] root in
-            self.rootViewController = root
+        Flows.use(flow, when: .created) { [weak self] root in
+            guard let self = self else { return }
+            self.window.rootViewController = root
         }
         return .one(
             flowContributor: .contribute(
                 withNextPresentable: flow,
-                withNextStepper: OneStepper(
-                    withSingleStep: PlaceStep.splashIsRequired
-                )
-        ))
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.splashIsRequired)
+            )
+        )
+    }
+    
+    private func coordinateToTabBar() -> FlowContributors {
+        let flow = TabBarFlow()
+        Flows.use(flow, when: .created) { [weak self] root in
+            guard let self = self else { return }
+            self.window.rootViewController = root
+        }
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: flow,
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.tabBarIsRequired)
+            )
+        )
+    }
+    
+    private func coordinateToAuth() -> FlowContributors {
+        let flow = SignInFlow()
+        Flows.use(flow, when: .created) { [weak self] root in
+            guard let self = self else { return }
+            self.window.rootViewController = root
+        }
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: flow,
+                withNextStepper: OneStepper(withSingleStep: PlaceStep.signInIsRequired)
+            )
+        )
     }
     
 }
